@@ -14,7 +14,6 @@ public sealed class ParallelStripedAlgorithm : IAlgorithm
     public int[][] Multiply()
     {
         var rowsA = matrixA.Length;
-        var colsA = matrixA[0].Length;
         var colsB = matrixB[0].Length;
 
         var result = InitializeResultMatrix(rowsA, colsB);
@@ -34,7 +33,7 @@ public sealed class ParallelStripedAlgorithm : IAlgorithm
             ThreadPool.QueueUserWorkItem(state =>
             {
                 MultiplyStriped(startRow, endRow, result);
-                waitEvents[(int)state].Set();
+                waitEvents[(int)state!].Set();
             }, t);
         }
 
