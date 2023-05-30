@@ -9,21 +9,21 @@ public sealed class ParallelStripedAlgorithm : StripedAlgorithm
 
      public override int[][] Multiply()
     {
-        int rowsA = matrixA.Length;
-        int colsA = matrixA[0].Length;
-        int colsB = matrixB[0].Length;
+        var rowsA = matrixA.Length;
+        var colsA = matrixA[0].Length;
+        var colsB = matrixB[0].Length;
 
-        int[][] result = InitializeResultMatrix(rowsA, colsB);
+        var result = InitializeResultMatrix(rowsA, colsB);
 
-        int numThreads = Environment.ProcessorCount;
-        int blockSize = rowsA / numThreads;
+        var numThreads = Environment.ProcessorCount;
+        var blockSize = rowsA / numThreads;
 
-        ManualResetEvent[] waitEvents = new ManualResetEvent[numThreads];
+        var waitEvents = new ManualResetEvent[numThreads];
 
         for (int t = 0; t < numThreads; t++)
         {
-            int startRow = t * blockSize;
-            int endRow = (t == numThreads - 1) ? rowsA : (startRow + blockSize);
+            var startRow = t * blockSize;
+            var endRow = (t == numThreads - 1) ? rowsA : (startRow + blockSize);
 
             waitEvents[t] = new ManualResetEvent(false);
 
@@ -41,14 +41,14 @@ public sealed class ParallelStripedAlgorithm : StripedAlgorithm
 
     private void MultiplyStriped(int startRow, int endRow, int[][] result)
     {
-        int colsA = matrixA[0].Length;
-        int colsB = matrixB[0].Length;
+        var colsA = matrixA[0].Length;
+        var colsB = matrixB[0].Length;
 
         for (int i = startRow; i < endRow; i++)
         {
             for (int j = 0; j < colsB; j++)
             {
-                int sum = 0;
+                var sum = 0;
                 for (int k = 0; k < colsA; k++)
                 {
                     sum += matrixA[i][k] * matrixB[k][j];

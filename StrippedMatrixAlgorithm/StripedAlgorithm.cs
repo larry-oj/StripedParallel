@@ -13,17 +13,17 @@ public class StripedAlgorithm : IAlgorithm
 
     public virtual int[][] Multiply()
     {
-        int rowsA = matrixA.Length;
-        int colsA = matrixA[0].Length;
-        int colsB = matrixB[0].Length;
+        var rowsA = matrixA.Length;
+        var colsA = matrixA[0].Length;
+        var colsB = matrixB[0].Length;
 
-        int[][] result = InitializeResultMatrix(rowsA, colsB);
+        var result = InitializeResultMatrix(rowsA, colsB);
 
         for (int i = 0; i < rowsA; i++)
         {
             for (int j = 0; j < colsB; j++)
             {
-                int sum = 0;
+                var sum = 0;
                 for (int k = 0; k < colsA; k++)
                 {
                     sum += matrixA[i][k] * matrixB[k][j];
@@ -37,7 +37,7 @@ public class StripedAlgorithm : IAlgorithm
 
     protected int[][] InitializeResultMatrix(int rows, int cols)
     {
-        int[][] result = new int[rows][];
+        var result = new int[rows][];
         for (int i = 0; i < rows; i++)
         {
             result[i] = new int[cols];

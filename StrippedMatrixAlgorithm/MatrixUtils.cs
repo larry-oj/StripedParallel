@@ -24,8 +24,8 @@ public class MatrixUtils
     // print matrix
     public static void PrintMatrix(int[][] matrix)
     {
-        int rows = matrix.Length;
-        int cols = matrix[0].Length;
+        var rows = matrix.Length;
+        var cols = matrix[0].Length;
 
         for (int i = 0; i < rows; i++)
         {
@@ -38,10 +38,10 @@ public class MatrixUtils
     // compare two matrices
     public static bool CompareMatrices(int[][] matrixA, int[][] matrixB)
     {
-        int rowsA = matrixA.Length;
-        int colsA = matrixA[0].Length;
-        int rowsB = matrixB.Length;
-        int colsB = matrixB[0].Length;
+        var rowsA = matrixA.Length;
+        var colsA = matrixA[0].Length;
+        var rowsB = matrixB.Length;
+        var colsB = matrixB[0].Length;
 
         if (rowsA != rowsB || colsA != colsB)
             return false;
