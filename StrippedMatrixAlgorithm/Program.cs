@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using StrippedMatrixAlgorithm;
+﻿using StrippedMatrixAlgorithm;
+using System.Diagnostics;
 using static System.Console;
 
 var watch = new Stopwatch();
@@ -35,3 +35,5 @@ foreach (var size in matrixSizes)
     WriteLine("Results are equal: " + MatrixUtils.CompareMatrices(normalRes, parallelRes));
     watch.Reset();
 }
+
+
