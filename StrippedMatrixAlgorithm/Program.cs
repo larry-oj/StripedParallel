@@ -32,8 +32,6 @@ foreach (var size in matrixSizes)
     WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
 
     WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
-
     WriteLine("Results are equal: " + MatrixUtils.CompareMatrices(normalRes, parallelRes));
-    
     watch.Reset();
 }
