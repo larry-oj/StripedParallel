@@ -4,11 +4,13 @@ public sealed class ParallelStripedAlgorithm : IAlgorithm
 {
     private int[][] matrixA;
     private int[][] matrixB;
+    private int numThreads;
 
-    public ParallelStripedAlgorithm(int[][] matrixA, int[][] matrixB)
+    public ParallelStripedAlgorithm(int[][] matrixA, int[][] matrixB, int numThreads = 0)
     {
         this.matrixA = matrixA;
         this.matrixB = matrixB;
+        this.numThreads = numThreads;
     }
 
     public int[][] Multiply()
@@ -17,8 +19,7 @@ public sealed class ParallelStripedAlgorithm : IAlgorithm
         var colsB = matrixB[0].Length;
 
         var result = InitializeResultMatrix(rowsA, colsB);
-
-        var numThreads = Environment.ProcessorCount;
+        
         var blockSize = rowsA / numThreads;
 
         var waitEvents = new ManualResetEvent[numThreads];
