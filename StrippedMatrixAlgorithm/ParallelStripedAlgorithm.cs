@@ -1,13 +1,17 @@
 ﻿namespace StrippedMatrixAlgorithm;
 
-public sealed class ParallelStripedAlgorithm : StripedAlgorithm
+public sealed class ParallelStripedAlgorithm : IAlgorithm
 {
+    private int[][] matrixA;
+    private int[][] matrixB;
+
     public ParallelStripedAlgorithm(int[][] matrixA, int[][] matrixB)
-        : base(matrixA, matrixB)
     {
+        this.matrixA = matrixA;
+        this.matrixB = matrixB;
     }
 
-     public override int[][] Multiply()
+    public int[][] Multiply()
     {
         var rowsA = matrixA.Length;
         var colsA = matrixA[0].Length;
@@ -56,5 +60,15 @@ public sealed class ParallelStripedAlgorithm : StripedAlgorithm
                 result[i][j] = sum;
             }
         }
+    }
+    
+    private int[][] InitializeResultMatrix(int rows, int cols)
+    {
+        var result = new int[rows][];
+        for (int i = 0; i < rows; i++)
+        {
+            result[i] = new int[cols];
+        }
+        return result;
     }
 }

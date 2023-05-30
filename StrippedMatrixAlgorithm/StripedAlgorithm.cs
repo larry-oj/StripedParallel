@@ -2,8 +2,8 @@
 
 public class StripedAlgorithm : IAlgorithm
 {
-    protected int[][] matrixA;
-    protected int[][] matrixB;
+    private int[][] matrixA;
+    private int[][] matrixB;
 
     public StripedAlgorithm(int[][] matrixA, int[][] matrixB)
     {
@@ -11,7 +11,7 @@ public class StripedAlgorithm : IAlgorithm
         this.matrixB = matrixB;
     }
 
-    public virtual int[][] Multiply()
+    public int[][] Multiply()
     {
         var rowsA = matrixA.Length;
         var colsA = matrixA[0].Length;
@@ -35,7 +35,7 @@ public class StripedAlgorithm : IAlgorithm
         return result;
     }
 
-    protected int[][] InitializeResultMatrix(int rows, int cols)
+    private int[][] InitializeResultMatrix(int rows, int cols)
     {
         var result = new int[rows][];
         for (int i = 0; i < rows; i++)

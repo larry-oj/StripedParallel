@@ -2,7 +2,7 @@
 using StrippedMatrixAlgorithm;
 using static System.Console;
 
-const int matrixSize = 500;
+const int matrixSize = 1000;
 var matrixA = MatrixUtils.GenerateRandomMatrix(matrixSize, matrixSize);
 var matrixB = MatrixUtils.GenerateRandomMatrix(matrixSize, matrixSize);
 
@@ -26,107 +26,107 @@ var parallelElapsed = watch.ElapsedMilliseconds;
 WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
 
 WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
-WriteLine("-------------------------------------");
- 
-matrixA = MatrixUtils.GenerateRandomMatrix(1000, 1000);
-matrixB = MatrixUtils.GenerateRandomMatrix(1000, 1000);
-
-watch = new Stopwatch();
-
-parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
-algorithm = new StripedAlgorithm(matrixA, matrixB);
-
-watch.Start();
-algorithm.Multiply();
-watch.Stop();
-normalElapsed = watch.ElapsedMilliseconds;
-WriteLine("Elapsed: " + normalElapsed + "ms");
-
-watch.Reset();
-
-watch.Start();
-parallel.Multiply();
-watch.Stop();
-parallelElapsed = watch.ElapsedMilliseconds;
-WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
-
-WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
-WriteLine("-------------------------------------");
-
-matrixA = MatrixUtils.GenerateRandomMatrix(1500, 1500);
-matrixB = MatrixUtils.GenerateRandomMatrix(1500, 1500);
-
-watch = new Stopwatch();
-
-parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
-algorithm = new StripedAlgorithm(matrixA, matrixB);
-
-watch.Start();
-algorithm.Multiply();
-watch.Stop();
-normalElapsed = watch.ElapsedMilliseconds;
-WriteLine("Elapsed: " + normalElapsed + "ms");
-
-watch.Reset();
-
-watch.Start();
-parallel.Multiply();
-watch.Stop();
-parallelElapsed = watch.ElapsedMilliseconds;
-WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
-
-WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
-WriteLine("-------------------------------------");
-
-matrixA = MatrixUtils.GenerateRandomMatrix(2000, 2000);
-matrixB = MatrixUtils.GenerateRandomMatrix(2000, 2000);
-
-watch = new Stopwatch();
-
-parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
-algorithm = new StripedAlgorithm(matrixA, matrixB);
-
-watch.Start();
-algorithm.Multiply();
-watch.Stop();
-normalElapsed = watch.ElapsedMilliseconds;
-WriteLine("Elapsed: " + normalElapsed + "ms");
-
-watch.Reset();
-
-watch.Start();
-parallel.Multiply();
-watch.Stop();
-parallelElapsed = watch.ElapsedMilliseconds;
-WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
-
-WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
-WriteLine("-------------------------------------");
-
-matrixA = MatrixUtils.GenerateRandomMatrix(3000, 3000);
-matrixB = MatrixUtils.GenerateRandomMatrix(3000, 3000);
-
-watch = new Stopwatch();
-
-parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
-algorithm = new StripedAlgorithm(matrixA, matrixB);
-
-watch.Start();
-algorithm.Multiply();
-watch.Stop();
-normalElapsed = watch.ElapsedMilliseconds;
-WriteLine("Elapsed: " + normalElapsed + "ms");
-
-watch.Reset();
-
-watch.Start();
-parallel.Multiply();
-watch.Stop();
-parallelElapsed = watch.ElapsedMilliseconds;
-WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
-
-WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
-WriteLine("-------------------------------------");
+// WriteLine("-------------------------------------");
+//  
+// matrixA = MatrixUtils.GenerateRandomMatrix(1000, 1000);
+// matrixB = MatrixUtils.GenerateRandomMatrix(1000, 1000);
+//
+// watch = new Stopwatch();
+//
+// parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
+// algorithm = new StripedAlgorithm(matrixA, matrixB);
+//
+// watch.Start();
+// algorithm.Multiply();
+// watch.Stop();
+// normalElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Elapsed: " + normalElapsed + "ms");
+//
+// watch.Reset();
+//
+// watch.Start();
+// parallel.Multiply();
+// watch.Stop();
+// parallelElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
+//
+// WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
+// WriteLine("-------------------------------------");
+//
+// matrixA = MatrixUtils.GenerateRandomMatrix(1500, 1500);
+// matrixB = MatrixUtils.GenerateRandomMatrix(1500, 1500);
+//
+// watch = new Stopwatch();
+//
+// parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
+// algorithm = new StripedAlgorithm(matrixA, matrixB);
+//
+// watch.Start();
+// algorithm.Multiply();
+// watch.Stop();
+// normalElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Elapsed: " + normalElapsed + "ms");
+//
+// watch.Reset();
+//
+// watch.Start();
+// parallel.Multiply();
+// watch.Stop();
+// parallelElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
+//
+// WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
+// WriteLine("-------------------------------------");
+//
+// matrixA = MatrixUtils.GenerateRandomMatrix(2000, 2000);
+// matrixB = MatrixUtils.GenerateRandomMatrix(2000, 2000);
+//
+// watch = new Stopwatch();
+//
+// parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
+// algorithm = new StripedAlgorithm(matrixA, matrixB);
+//
+// watch.Start();
+// algorithm.Multiply();
+// watch.Stop();
+// normalElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Elapsed: " + normalElapsed + "ms");
+//
+// watch.Reset();
+//
+// watch.Start();
+// parallel.Multiply();
+// watch.Stop();
+// parallelElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
+//
+// WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
+// WriteLine("-------------------------------------");
+//
+// matrixA = MatrixUtils.GenerateRandomMatrix(3000, 3000);
+// matrixB = MatrixUtils.GenerateRandomMatrix(3000, 3000);
+//
+// watch = new Stopwatch();
+//
+// parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
+// algorithm = new StripedAlgorithm(matrixA, matrixB);
+//
+// watch.Start();
+// algorithm.Multiply();
+// watch.Stop();
+// normalElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Elapsed: " + normalElapsed + "ms");
+//
+// watch.Reset();
+//
+// watch.Start();
+// parallel.Multiply();
+// watch.Stop();
+// parallelElapsed = watch.ElapsedMilliseconds;
+// WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
+//
+// WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
+// WriteLine("-------------------------------------");
 
 
 /*
