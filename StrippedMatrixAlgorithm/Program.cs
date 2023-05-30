@@ -2,30 +2,37 @@
 using StrippedMatrixAlgorithm;
 using static System.Console;
 
-const int matrixSize = 1000;
+const int matrixSize = 10;
 var matrixA = MatrixUtils.GenerateRandomMatrix(matrixSize, matrixSize);
 var matrixB = MatrixUtils.GenerateRandomMatrix(matrixSize, matrixSize);
 
+WriteLine("Matrix A:");
+MatrixUtils.PrintMatrix(matrixA);
+WriteLine("Matrix B:");
+MatrixUtils.PrintMatrix(matrixB);
+
 var watch = new Stopwatch();
 
-var parallel = new ParallelStripedAlgorithm(matrixA, matrixB);
+var parallel = new ParallelStripedAlgorithm(matrixA, matrixB, 8);
 var algorithm = new StripedAlgorithm(matrixA, matrixB);
 
 watch.Start();
-algorithm.Multiply();
+var normalRes = algorithm.Multiply();
 watch.Stop();
 var normalElapsed = watch.ElapsedMilliseconds;
-WriteLine("Elapsed: " + normalElapsed + "ms");
+WriteLine("Normal Elapsed: " + normalElapsed + "ms");
 
 watch.Reset();
 
 watch.Start();
-parallel.Multiply();
+var parallelRes = parallel.Multiply();
 watch.Stop();
 var parallelElapsed = watch.ElapsedMilliseconds;
 WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
 
 WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
+
+WriteLine("Results are equal: " + MatrixUtils.CompareMatrices(normalRes, parallelRes));
 // WriteLine("-------------------------------------");
 //  
 // matrixA = MatrixUtils.GenerateRandomMatrix(1000, 1000);
