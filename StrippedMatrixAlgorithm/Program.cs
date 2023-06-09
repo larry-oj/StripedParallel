@@ -9,31 +9,57 @@ foreach (var size in matrixSizes)
 {
     var matrixA = MatrixUtils.GenerateRandomMatrix(size, size);
     var matrixB = MatrixUtils.GenerateRandomMatrix(size, size);
-    
-    var algorithm = new StripedAlgorithm(matrixA, matrixB);
-    var parallel = new ParallelStripedAlgorithm(matrixA, matrixB, 8);
-    
+
     WriteLine("\n\nSize: " + size + "x" + size);
-    
-    // normal
-    watch.Start();
-    var normalRes = algorithm.Multiply();
-    watch.Stop();
-    var normalElapsed = watch.ElapsedMilliseconds;
-    WriteLine("Normal Elapsed: " + normalElapsed + "ms");
+
+    var normalElapsedAvg = 0;
+    int[][] normalRes = Array.Empty<int[]>();
+    for (int j = 0; j < 4; j++)
+    {
+        var algorithm = new StripedAlgorithm(matrixA, matrixB);
+        // normal
+        watch.Start();
+        normalRes = algorithm.Multiply();
+        watch.Stop();
+        normalElapsedAvg += (int)watch.ElapsedMilliseconds;
+    }
+
+    normalElapsedAvg = normalElapsedAvg / 4;
+
+    WriteLine("Normal Elapsed: " + normalElapsedAvg + "ms");
 
     watch.Reset();
 
-    // parallel
-    watch.Start();
-    var parallelRes = parallel.Multiply();
-    watch.Stop();
-    var parallelElapsed = watch.ElapsedMilliseconds;
-    WriteLine("Parallel Elapsed: " + parallelElapsed + "ms");
+    for (int i = 4; i <= 8; i += 2)
+    {
+        WriteLine("== Threads: " + i + " ==");
+        var parallelElapsedAvg = 0;
+        var correct = true;
+        for (int j = 0; j < 4; j++)
+        {
+            var parallel = new ParallelStripedAlgorithm(matrixA, matrixB, i);
+            
+            watch.Start();
+            var parallelRes = parallel.Multiply();
+            watch.Stop();
+            parallelElapsedAvg += (int)watch.ElapsedMilliseconds;
 
-    WriteLine("Speedup: " + (double)normalElapsed / parallelElapsed);
-    WriteLine("Results are equal: " + MatrixUtils.CompareMatrices(normalRes, parallelRes));
-    watch.Reset();
+            if (!MatrixUtils.CompareMatrices(normalRes, parallelRes))
+            {
+                WriteLine("ERROR! Parralel calculations are incorrect!");
+                correct = false;
+                break;
+            }
+        }
+
+        parallelElapsedAvg = parallelElapsedAvg / 4;
+        
+        WriteLine("Parallel Elapsed: " + parallelElapsedAvg + "ms");
+
+        WriteLine("Speedup: " + (double)normalElapsedAvg / parallelElapsedAvg);
+        WriteLine("Results are equal: " + correct);
+        watch.Reset();
+    }
 }
 
 
